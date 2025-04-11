@@ -186,4 +186,12 @@ def upgrade_building(building_id: int):
 
 @app.get("/optimize/last")
 async def get_last_optimize_input():
+    if not LAST_OPTIMIZE_INPUT: 
+        return {
+        "current_money": 123456789,
+        "current_gold": 123456,
+        "trade_x": 123,
+        "trade_y": 123,
+        "session_seconds": 10800
+        }
     return LAST_OPTIMIZE_INPUT

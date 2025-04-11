@@ -20,6 +20,7 @@ app.add_middleware(
 )
 
 SESSION_DURATION_SECONDS = 10800  # 3 hours
+LAST_OPTIMIZE_INPUT = None
 
 def calculate_base_income(employees: int, coefficient: float) -> float:
     return employees * 645 + 2433.3 * coefficient
@@ -244,4 +245,12 @@ async def optimize_income_plan(request: OptimizeRequest, db: AsyncSession = Depe
 
 @app.get("/optimize/last")
 async def get_last_optimize_input():
+    if not LAST_OPTIMIZE_INPUT: 
+        return {
+        "current_money": 123456789,
+        "current_gold": 123456,
+        "trade_x": 123,
+        "trade_y": 123,
+        "session_seconds": 10800
+    }
     return LAST_OPTIMIZE_INPUT
