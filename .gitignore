@@ -1,2 +1,4 @@
 top-girl-optimizer-ui/node_modules/
 top-girl-optimizer-ui/dist/
+/top-girl-optimizer-ui/dist
+/top-girl-optimizer-ui/node_modules
