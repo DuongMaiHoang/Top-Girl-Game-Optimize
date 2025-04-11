@@ -19,7 +19,7 @@ export default function BuildingsCRUD() {
     const [search, setSearch] = useState('');
     const [lastOptimization, setLastOptimization] = useState(null);
 
-    const api = 'http://localhost:8000/buildings';
+    const api = `${import.meta.env.VITE_API_URL}/buildings`;
 
     const fetchBuildings = async () => {
         const res = await fetch(api);

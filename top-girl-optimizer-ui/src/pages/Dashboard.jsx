@@ -35,7 +35,7 @@ export default function Dashboard() {
 
   const fetchBuildings = async () => {
     try {
-      const res = await fetch('http://localhost:8000/buildings');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/buildings`);
       if (!res.ok) throw new Error("Failed to fetch buildings");
       const data = await res.json();
       setBuildings(data);
@@ -46,7 +46,7 @@ export default function Dashboard() {
 
   const fetchOptimizeHistory = async () => {
     try {
-      const res = await fetch('http://localhost:8000/optimize/last');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/optimize/last`);
       if (res.ok) {
         const data = await res.json();
         setMoneyDisplay(data.current_money.toString());
@@ -64,7 +64,7 @@ export default function Dashboard() {
   };
 
   const optimize = async () => {
-    const res = await fetch('http://localhost:8000/optimize', {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/optimize`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
