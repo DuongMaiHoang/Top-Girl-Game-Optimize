@@ -56,6 +56,15 @@ def optimize_income_plan(request: OptimizeRequest):
     trade_y = request.trade_y
     session_time = request.session_seconds
 
+    global LAST_OPTIMIZE_INPUT
+    LAST_OPTIMIZE_INPUT = {
+        "current_money": request.current_money,
+        "current_gold": request.current_gold,
+        "trade_x": request.trade_x,
+        "trade_y": request.trade_y,
+        "session_seconds": request.session_seconds
+    }
+
     def calculate_income(buildings):
         return sum((b.num_employees * 645 + 2433.3 * b.curr_coefficient) for b in buildings)
 
@@ -174,3 +183,7 @@ def upgrade_building(building_id: int):
     building.curr_total_income = building.num_employees * 645 + 2433.3 * building.curr_coefficient
     building.next_coefficient += 0.1  # Placeholder logic for next level
     return building
+
+@app.get("/optimize/last")
+async def get_last_optimize_input():
+    return LAST_OPTIMIZE_INPUT
